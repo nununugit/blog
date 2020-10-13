@@ -1,9 +1,11 @@
+
+@extends('layouts.app')
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
 <title>投稿</title>
-<link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -35,3 +37,5 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 {!! $posts->links()  !!}
 </body>
 </html>
+    
+@endsection

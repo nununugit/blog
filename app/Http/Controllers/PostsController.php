@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function list(){
      $posts = DB::table('posts')->orderBy('created_at', 'desc')->Paginate(10);
-     $posts = Post::orderBy('created_at', 'desc')->Paginate(10);
      return view('posts.list', ['posts' => $posts]);
     }
 
@@ -20,6 +24,12 @@ class PostsController extends Controller
     // フォームに入力されたデータを DB に登録
 
     public function do_insert(Request $request){
+
+        $request->validate([
+            'title' => 'required|string|max:20',
+            'content' => 'required|string|min:10|max:140',
+        ]);
+
     $post = new Post();
     $post->author = 1;
     $post->title = $request->title;

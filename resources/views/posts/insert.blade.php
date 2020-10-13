@@ -1,12 +1,25 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
+
+
 <title>新規投稿</title>
 <link rel="stylesheet"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+    
 <div>
  <h1 class="bg-success"><a href="/">Laravel Sample Blog</a></h1>
 </div>

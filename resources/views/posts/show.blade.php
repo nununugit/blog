@@ -17,7 +17,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <h2>content: <br>{{ $param -> content }}</h2>
 @endforeach
 
-<a href="/" class="btn btn-warning btn-xs">戻る</a>
+<a href="/" class="btn btn-primary btn-xs">戻る</a>
 
 </body>
 </html>
