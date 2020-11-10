@@ -5,6 +5,8 @@ use App\Post;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostsController extends Controller
 {
@@ -14,8 +16,12 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
     public function list(){
-     $posts = DB::table('posts')->orderBy('created_at', 'desc')->Paginate(10);
-     return view('posts.list', ['posts' => $posts]);
+        $posts = DB::table('posts')->orderBy('created_at', 'desc')->Paginate(10);
+        return view('posts.list', [
+            'user' => Auth::user(),
+            'id' => Auth::id(),
+            'posts' => $posts
+            ]);
     }
 
     public function insert(){
@@ -55,6 +61,12 @@ class PostsController extends Controller
     }
 
     public function do_update(Request $request){
+
+        $request->validate([
+            'title' => 'required|string|max:20',
+            'content' => 'required|string|min:10|max:140',
+        ]);
+
         Post::where('id', $request->id)
             ->update(['title' => $request->title ,'content' => $request -> content]);
         return redirect('/');

@@ -1,16 +1,25 @@
-
 @extends('layouts.app')
+
 @section('content')
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
 <title>投稿</title>
+
 <link rel="stylesheet"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-<body>
-<div>
+{{-- <body>
+    <div class="text-right my-2">
+        {{ $user->name }} (id={{ $id }})
+        <form method="post" action="{{ route('logout') }}">
+         @csrf
+         <input type="submit" class="btn btn-info btn-sm" value="ログアウト">
+        </form>
+        </div>
+    <div> --}}
  <h1><a href="/">Laravel Sample Blog</a></h1>
 </div>
 <table class="table">
