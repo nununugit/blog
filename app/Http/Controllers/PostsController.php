@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-
 class PostsController extends Controller
 {
 
@@ -16,10 +15,13 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
     public function list(){
-        $posts = DB::table('posts')->orderBy('created_at', 'desc')->Paginate(10);
+        $posts = DB::table('posts')
+        ->join('users' ,'posts.author' ,'=','users.id')
+        ->select('users.name','posts.id','posts.title','posts.created_at','posts.comments')
+        ->orderBy('created_at', 'desc')->Paginate(10);
         return view('posts.list', [
-            'user' => Auth::user(),
-            'id' => Auth::id(),
+            // 'user' => Auth::user(),
+            // 'id' => Auth::id(),
             'posts' => $posts
             ]);
     }
@@ -35,14 +37,13 @@ class PostsController extends Controller
             'title' => 'required|string|max:20',
             'content' => 'required|string|min:10|max:140',
         ]);
-
-    $post = new Post();
-    $post->author = 1;
-    $post->title = $request->title;
-    $post->content = $request->content;
-    $post->comments = 0;
-    $post->save();
-    return redirect('/');
+        $post = new Post();
+        $post->author = Auth::id();
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->comments = 0;
+        $post->save();
+        return redirect('/');
     }
 
 

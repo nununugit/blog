@@ -15,12 +15,12 @@ Route::get('/post/{id}/delete', 'PostsController@delete');
 
 Route::get('/api/post', 'RestController@index');
 
-Route::any('manage', 'ManageController@index');
-
+//追加のAPI
+Route::any('/manage', 'ManageController@index');
 Route::post('api/post', 'RestController@store');
-Route::get('api/show/{id}', 'RestController@show');
-Route::any('api/update', 'RestController@update');
-Route::any('api/destroy/{id}', 'RestController@destroy');
+Route::get('api/post/{id}', 'RestController@show');
+Route::put('api/post/{id}', 'RestController@update');
+Route::delete('api/post/{id}', 'RestController@destroy');
 Route::any('post', 'RestController@index');
 
 Auth::routes(['reset'=>false]);

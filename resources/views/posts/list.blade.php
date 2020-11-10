@@ -32,13 +32,16 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </tr>
 @foreach ($posts as $post)
  <tr>
- <td>{{ $post->author }}</td>
+ <td>{{ $post->name }}</td>
  <td><a href="/post/{{ $post->id }}">{{ $post->title }}</a></td>
  <td>{{ $post->comments }}</td>
  <td>{{ date("Y/m/d H:i:s",strtotime($post->created_at)) }}</td>
  <td>
+ 
+@if( (Auth::user()->name) == $post->name)
  <a href="/post/{{ $post->id }}/update" class="btn btn-primary btn-xs">編集</a>
-<a href="/post/{{ $post->id }}/delete" class="btn btn-danger btn-xs">削除</a>
+ <a href="/post/{{ $post->id }}/delete" class="btn btn-danger btn-xs">削除</a>
+ @endif
  </td>
  </tr>
 @endforeach
