@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-use Illuminate\Support\Facades\DB;
-
-
 class RestController extends Controller
 {
     /**
@@ -40,13 +37,18 @@ class RestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $post = new Post();
         $post->author = 1;
         $post->title = $request->title;
         $post->content = $request->content;
         $post->comments = 0;
         $post->save();
+
+        return response()->json([
+            'message'=>'data is inserted',
+            'data' =>'ok',
+        ],200,[],JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -60,7 +62,7 @@ class RestController extends Controller
         $post = DB::table('posts')->where('id', $id)-> get();
         return response()->json([
             'message'=>'ok',
-            'data' =>$post,
+            'data' => $post,
         ],200,[],JSON_UNESCAPED_UNICODE);
     }
 
@@ -86,6 +88,11 @@ class RestController extends Controller
     {
         Post::where('id', $request->id)
         ->update(['title' => $request->title ,'content' => $request -> content]);
+
+        return response()->json([
+            'message'=>'data is updated',
+            'data' =>'ok',
+        ],200,[],JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -99,5 +106,10 @@ class RestController extends Controller
         
         Post::where('id',$id)
             ->delete();
+
+        return response()->json([
+            'message'=>'data is deleted',
+            'data' =>'ok',
+        ],200,[],JSON_UNESCAPED_UNICODE);
     }
 }

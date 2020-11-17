@@ -2,9 +2,9 @@ $(function() {
     $("#button1").click(function() {
         var url = $('#baseurl').val();
         var method = "GET";
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-        })
+        // $.ajaxSetup({
+        //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        // })
         $.ajax({
                 url: url,
                 type: method,
@@ -64,9 +64,9 @@ $(function() {
     $("#button3").click(function() {
         var url = $('#baseurl').val() + "/" + $('#id3').val();
         var method = "GET";
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-        })
+        // $.ajaxSetup({
+        //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        // })
         $.ajax({
                 url: url,
                 type: method,
@@ -97,9 +97,9 @@ $(function() {
             "title": $('#title4').val(),
             "content": $('#content4').val(),
         };
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-        })
+        // $.ajaxSetup({
+        //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        // })
         $.ajax({
                 url: url,
                 type: method,
@@ -129,9 +129,9 @@ $(function() {
     $("#button5").click(function() {
         var url = $('#baseurl').val() + "/" + $('#id5').val();
         var method = "DELETE";
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-        })
+        // $.ajaxSetup({
+        //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        // })
         $.ajax({
                 url: url,
                 type: method,
