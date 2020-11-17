@@ -17,7 +17,7 @@ Route::get('/api/post', 'RestController@index');
 
 //追加のAPI
 Route::any('/manage', 'ManageController@index');
-Route::post('api/post', 'RestController@store');
+// Route::post('api/post', 'RestController@store');
 Route::get('api/post/{id}', 'RestController@show');
 Route::put('api/post/{id}', 'RestController@update');
 Route::delete('api/post/{id}', 'RestController@destroy');
